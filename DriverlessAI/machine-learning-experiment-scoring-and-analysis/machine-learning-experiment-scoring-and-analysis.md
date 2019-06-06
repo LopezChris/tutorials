@@ -26,16 +26,13 @@ You will need the following to be able to do this tutorial:
 
 - Basic knowledge of Machine Learning and Statistics
 - A Driverless AI environment
-- Basic knowledge of Driverless AI or doing the [Automatic Machine Learning Intro tutorial](https://h2oai.github.io/tutorials/automatic-ml-intro-tutorial/#0).
+- Doing the [Automatic Machine Learning Intro tutorial](https://h2oai.github.io/tutorials/automatic-ml-intro-tutorial/#0) or familiarity with Driverless AI
 
-You can get more information about getting a Driverless AI env or trial from the following:
+You can get more information about setting up a Driverless AI environment and getting a trial license from the following:
 
 - [A Two Hour Test Drive Session](https://github.com/h2oai/tutorials/blob/master/DriverlessAI/Test-Drive/test-drive.md)  
-- [H2O Driverless AI License Key](https://github.com/h2oai/tutorials/blob/master/DriverlessAI/automatic-ml-intro-tutorial/automatic-ml-intro-tutorial.md#prerequisites) 
+- [Trial H2O Driverless AI License Key](https://github.com/h2oai/tutorials/blob/master/DriverlessAI/automatic-ml-intro-tutorial/automatic-ml-intro-tutorial.md#prerequisites) 
 - [H2O Driverless AI Environment and Product Tour](https://github.com/h2oai/tutorials/blob/master/DriverlessAI/automatic-ml-intro-tutorial/automatic-ml-intro-tutorial.md#task-1-get-environment-and-product-tour) 
-
-If you are not familiar with Driverless AI please review and do this tutorial:
-- [Automatic Machine Learning Intro Tutorial](https://github.com/h2oai/tutorials/blob/master/DriverlessAI/automatic-ml-intro-tutorial/automatic-ml-intro-tutorial.md) 
 
 
 ## Task 1: Launch Experiment
