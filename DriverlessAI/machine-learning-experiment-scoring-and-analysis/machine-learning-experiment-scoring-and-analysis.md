@@ -19,8 +19,8 @@
 
 ## Objective
 
-Many tools, such as ROC and Precision-Recall Curves, are available to evaluate how good or bad a classification model is predicting outcomes. In this tutorial, we will use a subset of the Freddie Mac Single-Family Loan-Level dataset to build a classification model and use it to predict if a loan will become delinquent. Through H2O’s DAI Diagnostic tool, we will explore the financial impacts the false positive and false negative predictions have while exploring tools like ROC Curve, Prec-Recall, Gain and Lift Charts, K-S Chart. Finally, we will explore a few metrics such as AUC, F-Scores, GINI, MCC, and Log Loss to assist us with evaluating the performance of the generated model.
-  
+Many diagnostic tools, such as ROC and Precision-Recall Curves, are available to evaluate how good or bad a classification model is at predicting outcomes. In this tutorial, we will use a subset of the Freddie Mac Single-Family Loan-Level dataset to build a binary classification model and use this model to predict if a loan will become delinquent. Through Driveless AI's (DAI) Diagnostic tool, we will explore the financial impacts of the false positive and false negative predictions while also exploring tools like ROC Curve, Precision-Recall Curve, Gain and Lift Charts, and K-S Chart. Finally, we will explore a few metrics such as AUC, F-Scores, GINI, MCC, and Log Loss to assist us with evaluating the performance of the generated model.
+
 ## Prerequisites
 You will need the following to be able to do this tutorial:
 
@@ -365,7 +365,7 @@ A ROC curve is a useful tool because it only focuses on how well the model was a
 The Precision-Recall Curve or Prec-Recall or **P-R** is another tool for evaluating classification models that is derived from the confusion matrix. Prec-Recall is a complementary tool to ROC curves, especially when the dataset has a significant skew. The Prec-Recall curve plots the precision or positive predictive value (y-axis) versus sensitivity or true positive rate (x-axis) for every possible classification threshold. At a high level, we can think of precision as a measure of exactness or quality of the results while recall as a measure of completeness or quantity of the results obtained by the model. Prec-Recall measures the relevance of the results obtained by the model.
 
 **Precision** is the ratio of correct positive predictions divided by the total number of positive predictions. This ratio is also known as **positive predictive value** and is measured from 0.0 to 1.0, where 0.0 is the worst and 1.0 is the best precision. Precision is more focused in the positive class than in the negative class, it actually measures the probability of correct detection of positive values (TP and FP). 
- 
+
 **Precision** = True positive predictions / Total number of positive predictions = TP  / (TP + FP)
 
 As mentioned in the ROC section, **Recall** is the true positive rate which is the ratio of the number of true positive prediction divided by all positive true predictions. Recall is a metric of the actual positive predictions. It tells us how many correct positive results occurred from all the positive samples available during the test of the model.
@@ -673,7 +673,7 @@ Now we are going to run a model diagnostics on the freddie_mac_500_test set. The
 Note: The new dataset must be the same format and with the same number of columns as the training dataset 
 3. **Metric Plots**: Metrics used to score the experiment model including ROC Curve, Pre-Recall Curve, Cumulative Gains, Lift Chart, Kolmogorov-Smirnov Chart, and Confusion Matrix
 4. **Download Predictions**: Download the diagnostics predictions
- 
+
 > Note: The scores will be different for the train dataset and the validation dataset used during  the training of the model.
 
 #### Confusion Matrix 
@@ -724,7 +724,7 @@ For this particular model these are the errors:
 - 4321/124,710 = 0.0347 or 3.47% times the model classified predicted cases that did default as not defaulting out of the total predicted not defaulting group
 - 177/325 = 0.4554  or 45.54% times the model classified predicted cases that defaulted as defaulting out of the total predicted defaulting group
 - (4321 + 148) / 125035 = **0.0357**  This means that this model incorrectly classifies  .0357 or 3.57% of the time.
- 
+
 What does the misclassification error of .0357 mean?
 One of the best ways to understand the impact of this misclassification error is to look at the financial implications of the False Positives and False Negatives. As mentioned previously, the False Positives represent the loans predicted not to default and in reality did default. 
 Additionally, we can look at the mortgages that Freddie Mac missed out on by not granting loans because the model predicted that they would default when in reality they did not default. 
@@ -999,7 +999,7 @@ Remember that the perfect prediction model starts out pretty steep, and as a rul
 4\. Exit out of the Gains chart by clicking on the **x** located at the top-right corner of the plot, next to the **Download** option
 
 ### Deeper Dive and Resources
- 
+
 - [Towards Data Science - Understanding and Interpreting Gain and Lift Charts](https://www.datasciencecentral.com/profiles/blogs/understanding-and-interpreting-gain-and-lift-charts)
 
 ## Task 9: ER: LIFT
