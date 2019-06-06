@@ -35,7 +35,7 @@ You can get more information about setting up a Driverless AI environment and ge
 - [H2O Driverless AI Environment and Product Tour](https://github.com/h2oai/tutorials/blob/master/DriverlessAI/automatic-ml-intro-tutorial/automatic-ml-intro-tutorial.md#task-1-get-environment-and-product-tour) 
 
 
-## Task 1: Launch Experiment
+## Task 1: Load Data and Prepare Experiment
 
 ### About the Dataset 
 
@@ -51,16 +51,18 @@ Download H2O’s subset of the Freddie Mac Single-Family Loan-Level dataset to y
 
 - [loan_level_500k.csv](https://s3.amazonaws.com/data.h2o.ai/DAI-Tutorials/loan_level_500k.csv)
 
-### Launch Experiment 
+### Explore the Data
 
-1\. Load the loan_level.csv to Driverless AI by clicking **Add Dataset (or Drag and Drop)** on the **Datasets overview** page. Click on **Upload File**, then select **loan_level.csv** file. Once the file uploaded, select **Details**.
+1\. Load `loan_level.csv` to Driverless AI by clicking **Add Dataset (or Drag and Drop)** from the **Datasets overview** page. Click on **Upload File** and then select **loan_level.csv**. Once the file uploaded, click on the dataset and select **Details**.
 
 ![loan-level-details-selection](assets/loan-level-details-selection.jpg)
 
-2\. Let’s take a quick look at the columns:
+2\. From the **Details** page we can see information about every column including data type (which is detected automattically), distributions, and statistics.
 
 ![loan-level-details-page](assets/loan-level-details-page.jpg)
-**Things to Note:**
+
+*Columns in our dataset:*
+
 - C1 - CREDIT_SCORE
 - C2 - FIRST_PAYMENT_DATE
 - C3 - FIRST_TIME_HOMEBUYER_FLAG
@@ -69,7 +71,8 @@ Download H2O’s subset of the Freddie Mac Single-Family Loan-Level dataset to y
 - C6 - MORTGAGE_INSURANCE_PERCENTAGE
 - C7 - NUMBER_OF_UNITS
 
-3\. Continue scrolling the current page to see more columns (image is not included)
+3\. Scroll to the right to see the remaining columns (image is not included)
+
 - C8 - OCCUPANCY_STATUS
 - C9 - ORIGINAL_COMBINED_LOAN_TO_VALUE
 - C10 - ORIGINAL_DEBT_TO_INCOME_RATIO
@@ -83,31 +86,31 @@ Download H2O’s subset of the Freddie Mac Single-Family Loan-Level dataset to y
 - C18 - PROPERTY_TYPE
 - C19 - POSTAL_CODE
 - C20 - LOAN_SEQUENCE_NUMBER
-- C21 - LOAN_PURPOSE**
+- C21 - LOAN_PURPOSE
 - C22 - ORIGINAL_LOAN_TERM
 - C23 - NUMBER_OF_BORROWERS
 - C24 - SELLER_NAME
 - C25 - SERVICER_NAME
 - C26 - PREPAID Drop 
-- C27 - DELINQUENT- This column is the label we are interested in predicting where False -> not defaulted and True->defaulted
-
+- C27 - DELINQUENT- This column is the label we are interested in predicting where **False** means the customer did not default and **True** means they did 
 
 4\. Return to the **Datasets** page
 
-5\. Click on the **loan_level_500k.csv** file then split 
+5\. Click on the **loan_level_500k.csv** file and then select **Split** 
 
 ![loan-level-split-1](assets/loan-level-split-1.jpg)
 
-6\.  Split the data into two sets: **freddie_mac_500_train** and **freddie_mac_500_test**. Use the image below as a guide:
+6\.  Split the data into two sets: **freddie_mac_500_train** and **freddie_mac_500_test**. Use the image and list below as a guide:
 
 ![loan-level-split-2](assets/loan-level-split-2.jpg)
-*Things to note*
+*Steps for splitting the data:*
 
-1. Type 'freddie_mac_500_train' for OUTPUT NAME 1, this will serve as the training set
-2. Type 'freddie_mac_500_test' for OUTPUT NAME 2, this will serve as the test set
-3. For Target Column select **Delinquent**
-4. Change the split value to .75 by adjusting the slider to 75% or entering .75 in the section that says Train/Valid Split Ratio
-5. Save
+1. Note that a test dataset is not required to run an experiment, but it is important for building robust models and ensuring that your final model is not overfit on the training data
+2. Type 'freddie_mac_500_train' for OUTPUT NAME 1, this will serve as the training set
+3. Type 'freddie_mac_500_test' for OUTPUT NAME 2, this will serve as the test set
+4. For Target Column select **Delinquent**, this ensures that the feature we are predicting is appropriately distributed between the train and test datasets. This is known as a stratified split.
+5. Change the split value to .75 by adjusting the slider to 75% or entering .75 in the Train/Valid Split Ratio section 
+6. Click Save
 
 
 The training set contains 375k rows, each row representing a loan, and 27 columns representing the attributes of each loan including the column that has the label we are trying to predict.  Note: the actual data in training and test split vary by user, as the data is split randomly. The Test set contains 125k rows, each row representing a loan, and 27 attribute columns representing attributes of each loan.
@@ -118,32 +121,31 @@ The training set contains 375k rows, each row representing a loan, and 27 column
 
 8\. Click on the **freddie_mac_500_train** file then select **Predict**.
 
-9\. Select **Not Now** on the **First time Driverless AI, Click Yes to get a tour!**. A similar image should appear:
+9\. Select **Not Now** on the **First time Driverless AI, Click Yes to get a tour!** notification. You should see a similar screen:
 
 ![loan-level-predict](assets/loan-level-predict.jpg)
 
-10\. Select **Dropped Cols**, drop the following 2 columns: 
+10\. Select **Dropped Cols**, drop the following 2 columns and then click **Done**: 
 
 - Prepayment_Penalty_Mortgage_Flag 
 - PREPAID
-- Select **Done**
 
-These two columns are dropped because they are both clear indicators that the loans will become delinquent and will cause data leakage. 
+When modeling we want to ensure that we don't include any columns which will either not be available in new data or which give away what we are predicting. These two columns are dropped because they are both clear indicators that the loans will become delinquent, this is known as data leakage.
 
 ![train-set-drop-columns](assets/train-set-drop-columns.jpg)
 
  11\. Select **Target Column**, then select **Delinquent**
 ![train-set-select-delinquent](assets/train-set-select-delinquent.jpg)
 
-12\. Select **Test Dataset**, then **test**
+12\. Select **Test Dataset**, then **freddie_mac_500_test**
 
 ![add-test-set](assets/add-test-set.jpg)
 
-13\. A similar Experiment page should appear:   
+13\. Your experiment page should then look like the following:   
 
 ![experiment-settings-1](assets/experiment-settings-1.jpg)    
 
-On task 2, we will explore and update the **Experiment Settings**.
+In the next task we will discuss what happens when we run an experiment and explore and update the **Experiment Settings**.
 
 ## Task 2: Explore Experiment Settings and Expert Settings
 
